@@ -1,32 +1,53 @@
 import core
+import time
 
 
 def moves():
-    print('Attack: random number between damage high and damage low')
-    print('Heal: takes ten rage to add five HP')
+    print('\n[A]ttack: random number between damage high and damage low')
+    print(
+        '[K]amehameha: a lot of hit points for a lot of range and energy attack'
+    )
+    print('[H]eal: takes ten rage to add five HP\n')
 
 
 def main():
     input('----------FIGHT BEGIN---------')
+
     liza = core.Gladiator('liza', 100, 0, 7, 20)
     mac = core.Gladiator('mac', 100, 0, 7, 20)
-    print('{}\n{}\n'.format(liza, mac))
 
-    # gladiator_1 = core.Gladiator('liza', 100, 25, 16, 50)
-    # gladiator_2 = core.Gladiator('Jackie', 100, 25, 16, 50)
-    # print('{}\n{}'.format(gladiator_1, gladiator_2))
+    while True:
+        print('\n{}\n{}'.format(liza, mac))
+        time.sleep(1)
 
-    # sword = core.Moves('sword', 25)
-    # kick = core.Moves('kick', 15)
-    # punch = core.Moves('Punch', 20)
-    # poke = core.Moves('poke', 10)
-    # kamehameha = core.Moves('kamehameha', 30)
+        answer = moves()
+        time.sleep(1)
 
-    # print('\n--{}\n--{}\n--{}\n--{}\n--{}'.format(sword, kick, punch, poke,
-    #                                               kamehameha))
+        # THIS WILL BE LIZA'S TURN
+        print('Liza\'s Turn:')
+        answer = input('Make a move:\n').strip().upper()
 
-    # while True:
-    #     choice = input('Make a move:\t')
+        if answer == 'A':
+            liza.attack(mac)
+
+        elif answer == 'k':
+            liza.kamehameha(mac)
+
+        elif answer == 'H':
+            liza.heal()
+
+        # THIS WILL BE MAC'S TURN
+        print('Mac\'s Turn:')
+        answer = input('Make a move:\n').strip().upper()
+
+        if answer == 'A':
+            mac.attack(liza)
+
+        elif answer == 'k':
+            mac.kamehameha(liza)
+
+        elif answer == 'H':
+            mac.heal()
 
 
 if __name__ == '__main__':
