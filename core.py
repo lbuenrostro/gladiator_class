@@ -40,12 +40,28 @@ class Gladiator:
         '''Gladiator -> Gladiator'''
         mega_attack = randint(30, 50)
         normal = randint(self.damage_low, self.damage_high)
-        if [self.rage] >= 30:
-            defender[self.health] = defender[self.health] - mega_attack
-            [self.rage] = 0
+        if self.rage >= 30:
+            other_g[self.health] = other_g[self.health] - mega_attack
+            self.rage = 0
         else:
-            defender[self.health] = defender[self.health] - normal
+            other_g[self.health] = other_g[self.health] - normal
             self.rage += 15
+
+    def increase_rage(self):
+        '''Gladiator -> Gladiator'''
+        if self.rage <= 100:
+            self.rage = min(100, self.rage + 20)
+
+    # def spirit_bomb(self, other_g):
+    #     '''Gladiator -> Gladiador'''
+    #     bomb_attack = randint(55, 90)
+    #     lighing = randint(self.damage_low], self.damage_high])
+    #     if self.rage] >= 60:
+    #         other_g[self.health] = other_g[self.health] - bomb_attack
+    #         self.rage = 0
+    #     else:
+    #         other_g[self.health] = other_g[self.health] - lighing
+    #         self.rage += 15
 
     def is_dead(self):
         '''Gladiator -> bool
